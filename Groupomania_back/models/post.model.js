@@ -17,7 +17,7 @@ const PostSchema = new mongoose.Schema(
         video: {
             type: String,
         },
-        Likers: {
+        likers: {
             type: [String],
             required: true,
         },
