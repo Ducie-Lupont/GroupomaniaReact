@@ -18,17 +18,18 @@ const userSchema = new mongoose.Schema(
             required: true,
             validate: [isEmail],
             lowercase: true,
+            unique: true,
             trim: true,
         },
         password: {
             type: String,
             required: true,
             max: 1024,
-            minLength: 4,
+            minlength: 4,
         },
         picture: {
             type: String,
-            default: "./uploads/profil/random-user.png",
+            default: "../uploads/profil/random-user.png",
         },
         bio: {
             type: String,
@@ -57,9 +58,9 @@ userSchema.pre("save", async function (next) {
 })
 
 //fonction pour décrypter un mod de passe
-userSchema.statics.login = async function(email, password){
-    const user = await this.findOne({email})
-    if(user) {
+userSchema.statics.login = async function (email, password) {
+    const user = await this.findOne({ email })
+    if (user) {
         const auth = await bcrypt.compare(password, user.password)
         if (auth) {
             return user
