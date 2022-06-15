@@ -1,5 +1,6 @@
 const UserModel = require('../models/user.model')
 const ObjectID = require('mongoose').Types.ObjectId
+const fs = require('fs')
 
 //Obtenir les données de tous les utilisateurs
 module.exports.getAllUsers = async (req, res) => {
@@ -46,6 +47,15 @@ module.exports.updateUser = async (req, res) => {
 module.exports.deleteUser = async (req, res) => {
     if (!ObjectID.isValid(req.params.id))
         return res.status(400).send('ID unknown : ' + req.params.id)
+
+    try {
+        const docs = await UserModel.findById(req.params.id)
+        if (!docs) console.log('Image non supprimée')
+        else fs.unlink(docs.picture, () => { })
+                
+    } catch(err) {
+        return console.error(err)
+    }
 
     try {
         await UserModel.remove({ _id: req.params.id }).exec()
