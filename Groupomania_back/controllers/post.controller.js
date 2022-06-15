@@ -1,13 +1,44 @@
 const postModel = require('../models/post.model')
 const PostModel = require('../models/post.model')
 const UserModel = require('../models/user.model')
+const fs = require('fs')
+const { uploadErrors } = require('../utils/errors.utils')
 const ObjectID = require('mongoose').Types.ObjectId
 
 //CRUD : Create
 module.exports.createPost = async (req, res) => {
+  let fileName
+
+  if (req.file) {
+    try {
+      //verification du format du fichier (s'assurer que c'est une image, et que son format est supporté)
+      if (req.file.mimetype !== 'image/jpg' &&
+        req.file.mimetype !== 'image/png' &&
+        req.file.mimetype !== 'image/jpeg'
+      )
+        throw Error('invalid file')
+
+      //verif du poids du fichier
+      if (req.file.size > 500000)
+        throw Error('max size')
+
+    } catch (err) {
+      const errors = uploadErrors(err)
+      return res.status(201).json({ errors })
+    }
+    //nouveau nom du fichier
+    fileName = req.body.posterId + Date.now() + '.jpg'
+
+    //stockage de la nouvelle image.
+    fs.writeFile(`${__dirname}/../client/public/uploads/posts/${fileName}`, req.file.buffer, (err) => {
+      if (err) throw (err)
+    })
+  }
+
   const newPost = new postModel({
     posterId: req.body.posterId,
     message: req.body.message,
+    picture: req.file ? './uploads/posts/' + fileName : '',
     video: req.body.video,
     likers: [],
     comments: [],
