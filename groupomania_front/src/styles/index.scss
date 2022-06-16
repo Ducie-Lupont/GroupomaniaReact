@@ -1,4 +1,6 @@
-@import './settings';
+@import './settings'; //toujours garder les settings scss le plus haut possible ici
+
+
 @import './pages/home';
 @import './components/navbar.scss';
 @import './components/card.scss';

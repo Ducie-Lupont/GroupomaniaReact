@@ -15,9 +15,7 @@ const SignUpForm = () => {
     const pseudoError = document.querySelector(".pseudo.error");
     const emailError = document.querySelector(".email.error");
     const passwordError = document.querySelector(".password.error");
-    const passwordConfirmError = document.querySelector(
-      ".password-confirm.error"
-    );
+    const passwordConfirmError = document.querySelector(".password-conf.error");
     const termsError = document.querySelector(".terms.error");
 
     passwordConfirmError.innerHTML = "";
@@ -26,8 +24,7 @@ const SignUpForm = () => {
     if (password !== controlPassword || !terms.checked) {
       if (password !== controlPassword)
         passwordConfirmError.innerHTML =
-          "Les mots de passe ne correspondent pas";
-
+          "Les mots de passe ne sont pas identiques";
       if (!terms.checked)
         termsError.innerHTML = "Veuillez valider les conditions générales";
     } else {
@@ -60,8 +57,8 @@ const SignUpForm = () => {
         <>
           <SignInForm />
           <span></span>
-          <h4 className="success">
-            Enregistrement réussi, veuillez-vous connecter
+          <h4 className="succes">
+            Inscription réussie, veuillez vous connecter
           </h4>
         </>
       ) : (
@@ -80,7 +77,7 @@ const SignUpForm = () => {
           <label htmlFor="email">Email</label>
           <br />
           <input
-            type="text"
+            type="email"
             name="email"
             id="email"
             onChange={(e) => setEmail(e.target.value)}
@@ -99,8 +96,8 @@ const SignUpForm = () => {
           />
           <div className="password error"></div>
           <br />
-          <label htmlFor="password-conf">Confirmer mot de passe</label>
-          <br/>
+          <label htmlFor="password-conf">Confirmer le mot de passe</label>
+          <br />
           <input
             type="password"
             name="password"
@@ -108,18 +105,18 @@ const SignUpForm = () => {
             onChange={(e) => setControlPassword(e.target.value)}
             value={controlPassword}
           />
-          <div className="password-confirm error"></div>
+          <div className="password-conf error"></div>
           <br />
           <input type="checkbox" id="terms" />
           <label htmlFor="terms">
             J'accepte les{" "}
-            <a href="/" target="_blank" rel="noopener noreferrer">
+            <a href="/" target="_blank" rel="noopener noreferer">
               conditions générales
             </a>
           </label>
           <div className="terms error"></div>
           <br />
-          <input type="submit" value="Valider inscription" />
+          <input type="submit" value="Valider insciption" />
         </form>
       )}
     </>

@@ -1,34 +1,33 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const SignInForm = () => {
+const SignInForm = () => {//formulaire de connexion
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleLogin = (e) => {
-    e.preventDefault();
-    const emailError = document.querySelector(".email.error");
-    const passwordError = document.querySelector(".password.error");
+    e.preventDefault();//empêcher le rechargement de la page
+    const emailError = document.querySelector(".email.error");              //recup des erreurs éventuelles
+    const passwordError = document.querySelector(".password.error");        //
 
-    axios({
+    axios({ //axios pour envoyer la requête
       method: "post",
-      url: `${process.env.REACT_APP_API_URL}api/user/login`,
+      url: `${process.env.REACT_APP_API_URL}api/user/login`, //${url de l'api}api/"cheminDeLaRequete"
       withCredentials: true,
-      data: {
+      data: { //contenu de la requête
         email,
         password,
       },
     })
-      .then((res) => {
-        console.log(res);
-        if (res.data.errors) {
+      .then((res) => {              //ce qu'on fait de la réponse
+        if (res.data.errors) {      //si il y a une erreur dans la reponse
           emailError.innerHTML = res.data.errors.email;
           passwordError.innerHTML = res.data.errors.password;
-        } else {
+        } else {                    //si il n'y a pas d'erreur dans la réponse, je redirige vers la page d'accueil
           window.location = "/";
         }
       })
-      .catch((err) => {
+      .catch((err) => {             //catch en cas d'erreur survenue, et log de l'erreur dans la console.
         console.log(err);
       });
   };
