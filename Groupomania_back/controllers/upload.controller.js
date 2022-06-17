@@ -19,14 +19,14 @@ module.exports.uploadProfil = async (req, res) => {
     const fileName = req.body.name + '.jpg'         //nouveau nom du fichier
 
     //stockage de la nouvelle image.
-    fs.writeFile(`${__dirname}/../client/public/uploads/profil/${fileName}`, req.file.buffer, (err) => {
+    fs.writeFile(`${__dirname}/../../groupomania_front/public/uploads/profil/${fileName}`, req.file.buffer, (err) => {
         if (err) throw (err)
     })
 
     try {
         await UserModel.findByIdAndUpdate(
             req.body.userId,
-            { $set: { picture: `${__dirname}/../client/public/uploads/profil/` + fileName } },
+            { $set: { picture: `./uploads/profil/` + fileName } },
             { upsert: true, setDefaultsOnInsert: true },
             (err, docs) => {
                 if (!err) return res.send(docs)

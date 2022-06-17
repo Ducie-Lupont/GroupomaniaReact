@@ -35,15 +35,16 @@ nav {
     .logo {
       display: flex;
       align-items: center;
+      position: relative;
+      width: 186px;
+      height: 26px;
+      overflow: hidden;
       
-      h3 {
-        transform: translate(15px, 2px);
-        font-size: 1.5rem;
-        font-family: $font-3;
-      }
       img {
-        height: 26px;
-        width: 26px;
+        position:absolute;
+        top: -80px;
+        left: 0px;
+        max-width: 186px;
       }
     }
     
