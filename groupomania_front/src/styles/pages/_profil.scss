@@ -171,6 +171,7 @@
           cursor: pointer;
         }
         input[type="file"] {
+          display: none;
           position: absolute;
           opacity: 1;
           transform: translate(-3px, -50%);

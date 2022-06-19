@@ -30,7 +30,7 @@ module.exports.createPost = async (req, res) => {
     fileName = req.body.posterId + Date.now() + '.jpg'
 
     //stockage de la nouvelle image.
-    fs.writeFile(`${__dirname}/../client/public/uploads/posts/${fileName}`, req.file.buffer, (err) => {
+    fs.writeFile(`../groupomania_front/public/uploads/posts/${fileName}`, req.file.buffer, (err) => {
       if (err) throw (err)
     })
   }
@@ -38,7 +38,7 @@ module.exports.createPost = async (req, res) => {
   const newPost = new postModel({
     posterId: req.body.posterId,
     message: req.body.message,
-    picture: req.file ? `${__dirname}/../client/public/uploads/posts/` + fileName : '',
+    picture: req.file ? `./uploads/posts/` + fileName : '',
     video: req.body.video,
     likers: [],
     comments: [],

@@ -6,12 +6,12 @@ import App from "./App";
 import { Provider } from "react-redux";
 import { applyMiddleware, createStore } from "redux";
 import thunk from "redux-thunk";
+
 //A retirer si mise en prod du site, outils de dev
 import { composeWithDevTools } from "redux-devtools-extension";
 import logger from "redux-logger";
 import rootReducer from "./reducers";
 import { getUsers } from "./actions/users.actions";
-
 //
 const store = createStore(
   rootReducer,
