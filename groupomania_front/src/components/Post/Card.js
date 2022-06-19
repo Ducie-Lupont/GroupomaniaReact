@@ -91,15 +91,7 @@ const Card = ({ post }) => {
                   title={post._id}
                 ></iframe>
               )}
-              {userData._id === post.posterId && (
-                <div className="button-container">
-                  <div onClick={() => setIsUpdated(!isUpdated)}>
-                    <img src="./img/icons/edit.svg" alt="edit" />
-                  </div>
-                  <DeleteCard id={post._id} />
-                </div>
-              )}
-              {userData.unicorn === true && (
+              {(userData._id === post.posterId || userData.unicorn === true) && (
                 <div className="button-container">
                   <div onClick={() => setIsUpdated(!isUpdated)}>
                     <img src="./img/icons/edit.svg" alt="edit" />
