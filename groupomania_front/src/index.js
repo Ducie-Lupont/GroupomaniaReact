@@ -6,16 +6,17 @@ import App from "./App";
 import { Provider } from "react-redux";
 import { applyMiddleware, createStore } from "redux";
 import thunk from "redux-thunk";
-
-//A retirer si mise en prod du site, outils de dev
-import { composeWithDevTools } from "redux-devtools-extension";
-import logger from "redux-logger";
 import rootReducer from "./reducers";
 import { getUsers } from "./actions/users.actions";
+
+//A retirer si mise en prod du site, outils de dev
+//import { composeWithDevTools } from "redux-devtools-extension";
+//import logger from "redux-logger";
 //
+
 const store = createStore(
   rootReducer,
-  composeWithDevTools(applyMiddleware(thunk, logger))
+  /*composeWithDevTools(*/applyMiddleware(thunk)//)
 );
 
 store.dispatch(getUsers());
