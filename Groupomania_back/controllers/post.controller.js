@@ -77,7 +77,7 @@ module.exports.updatePost = (req, res) => {
     { $set: updatedRecord },
     { new: true },
     (err, docs) => {
-      if (!err) res.send(docs);
+      if (!err) res.sendStatus(200).json(docs);
       else console.log("update error : " + err);
     }
   );

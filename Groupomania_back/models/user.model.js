@@ -38,10 +38,6 @@ const userSchema = new mongoose.Schema(
     likes: {
       type: [String],
     },
-    unicorn: {
-      type: Boolean,
-      default: false,
-    },
   },
   {
     timestamps: true,

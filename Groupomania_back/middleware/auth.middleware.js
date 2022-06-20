@@ -49,13 +49,13 @@ module.exports.isPostAuth = (req, res, next) => {
       if (!err) {
         let user = await UserModel.findById(decodedToken.id);
         let poster = await postModel.findById(req.params.id);
-        if (poster.posterId === user.id || user.unicorn === true) {
+        if (poster.posterId === user.id || user.id === process.env.SUPER_USER) {
           res.locals.user = user;
           next();
         } else {
           res.locals.user = null;
           res.cookie("jwt", "", { maxAge: 1 });
-          res.sendStatus(200).json();
+          res.sendStatus(401).json();
         }
       }
     });
@@ -73,14 +73,14 @@ module.exports.isUserAuth = (req, res, next) => {
         let updatingUser = await UserModel.findById(req.params.id);
         if (
           requestingUser.id === updatingUser.id ||
-          requestingUser.unicorn === true
+          requestingUser.id === process.env.SUPER_USER
         ) {
           res.locals.user = updatingUser;
           next();
         } else {
           res.locals.user = null;
           res.cookie("jwt", "", { maxAge: 1 });
-          res.sendStatus(200).json();
+          res.sendStatus(401).json();
         }
       }
     });
@@ -96,17 +96,17 @@ module.exports.isUploadAuth = (req, res, next) => {
       if (!err) {
         let requestingUser = await UserModel.findById(decodedToken.id);
         let updatingUser = await UserModel.findById(req.body.userId);
-        console.log(updatingUser);
+        console.log(process.env.SUPER_USER);
         if (
           requestingUser.id === updatingUser.id ||
-          requestingUser.unicorn === true
+          requestingUser.id === process.env.SUPER_USER
         ) {
           res.locals.user = updatingUser;
           next();
         } else {
           res.locals.user = null;
           res.cookie("jwt", "", { maxAge: 1 });
-          res.sendStatus(200).json();
+          res.sendStatus(401).json();
         }
       }
     });
