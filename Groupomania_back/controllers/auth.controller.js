@@ -11,7 +11,6 @@ const createToken = (id) => {
 };
 
 module.exports.signUp = async (req, res) => {
-  //console.log(req.body)
   const { pseudo, email, password } = req.body; //"déstructuré" càd pseudo= req.body.pseudo ; email = req.body.email ; etc...
 
   try {
