@@ -16,7 +16,7 @@ import { getUsers } from "./actions/users.actions";
 
 const store = createStore(
   rootReducer,
-  /*composeWithDevTools(*/applyMiddleware(thunk)//)
+  /*composeWithDevTools(*/ applyMiddleware(thunk) //)
 );
 
 store.dispatch(getUsers());
