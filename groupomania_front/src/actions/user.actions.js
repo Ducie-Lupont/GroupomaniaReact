@@ -19,18 +19,22 @@ export const getUser = (uid) => {
 
 export const uploadPicture = (data, id) => {
   return (dispatch) => {
-    return axios
-      .post(`${process.env.REACT_APP_API_URL}api/user/upload`, data)
+    return axios({
+      method: "post",
+      url: `${process.env.REACT_APP_API_URL}api/user/upload`,
+      data,
+      withCredentials: true,
+    })
       .then((res) => {
         if (res.data.errors) {
           dispatch({ type: GET_USER_ERRORS, payload: res.data.errors });
         } else {
           dispatch({ type: GET_USER_ERRORS, payload: "" });
-        return axios
-          .get(`${process.env.REACT_APP_API_URL}api/user/${id} `)
-          .then((res) => {
-            dispatch({ type: UPLOAD_PICTURE, payload: res.data.picture });
-          })
+          return axios
+            .get(`${process.env.REACT_APP_API_URL}api/user/${id} `)
+            .then((res) => {
+              dispatch({ type: UPLOAD_PICTURE, payload: res.data.picture });
+            });
         }
       })
       .catch((err) => console.log(err));
@@ -43,6 +47,7 @@ export const updateBio = (userId, bio) => {
       method: "put",
       url: `${process.env.REACT_APP_API_URL}api/user/` + userId,
       data: { bio },
+      withCredentials: true,
     })
       .then((res) => {
         dispatch({ type: UPDATE_BIO, payload: bio });

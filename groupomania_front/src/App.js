@@ -20,10 +20,9 @@ const App = () => {
       })
         .then((res) => {
           //si la réponse est positive
-          console.log(res);
           setUid(res.data); //j'attribue la data (l'id utilisateur) comme uid
         })
-        .catch((err) => console.log(err)); //si l'utilisateur n'est pas connecté ou n'a pas de token, j'en suis informée
+        .catch((err) => console.log("Utilisateur non connecté : " + err)); //si l'utilisateur n'est pas connecté ou n'a pas de token, j'en suis informée
     };
     fetchToken();
 
