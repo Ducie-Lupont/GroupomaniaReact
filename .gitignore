@@ -1,3 +1,5 @@
 /Groupomania_back/node_modules
-/Groupomania_back/config/.env
 notes.txt
+/groupomania_front/.env
+/Groupomania_back/config/.env
+/groupomania_front/node_modules/
