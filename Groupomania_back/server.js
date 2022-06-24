@@ -6,8 +6,11 @@ require("dotenv").config({ path: "./config/.env" });
 require("./config/db");
 const { checkUser, requireAuth } = require("./middleware/auth.middleware");
 const cors = require("cors");
-const rateLimit = require("express-rate-limit"); // j'appelle mon ratelimiter
+const rateLimit = require("express-rate-limit");
 
+const app = express();
+
+//Ratelimiter
 const limiter = rateLimit({
   windowMs: 1000 /*ms*/ * 60 /*secondes*/ * 15 /*minutes*/, // soit 15 minutes [c'est a définir en ms donc plutôt que de calculer je prends 1000ms pour une seconde, *le nombre de secondes dans une minute, *le nombre de minutes que je souhaites(et je peux étendre en heures, jours, etc....)]
   max: 50, // Limite chaque IP a 5 requêtes par tranche de 15 minutes
@@ -15,11 +18,10 @@ const limiter = rateLimit({
   legacyHeaders: false, // Désactive le ratelimiter pour les headers `X-RateLimit-*`
 });
 
-const app = express();
-
+//parametrage CORS
 const corsOptions = {
-  origin: ["http://192.168.1.17:3000", "http://localhost:3000", "*"],
-  default: "192.168.1.17:3000",
+  origin: ["http://localhost:3000", "*"],
+  default: "http://localhost:3000",
   credentials: true,
   allowedHeaders: ["sessionId", "Content-Type"],
   exposedHeaders: ["sessionId"],
@@ -45,6 +47,6 @@ app.use("/api/user", userRoutes);
 app.use("/api/post", postRoutes);
 
 // server
-app.listen(process.env.PORT, '192.168.1.17', () => {
+app.listen(process.env.PORT, () => {
   console.log(`Listening on port ${process.env.PORT}`);
 });

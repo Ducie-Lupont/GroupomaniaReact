@@ -1,3 +1,6 @@
+#root
+notes.txt
+
 #Back-end
 /Groupomania_back/node_modules
 /Groupomania_back/config/.env
@@ -5,4 +8,3 @@
 #Front-end
 /groupomania_front/node_modules/
 /groupomania_front/.env
-notes.txt
