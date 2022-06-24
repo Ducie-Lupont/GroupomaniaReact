@@ -4,7 +4,7 @@ const fs = require("fs");
 
 //Obtenir les données de tous les utilisateurs
 module.exports.getAllUsers = async (req, res) => {
-  const users = await UserModel.find().select("-password, -email");
+  const users = await UserModel.find({}, {pseudo:true, picture:true, likes:true, createdAt:true, updatedAt: true, bio: true})
   //les données SAUF le mot de passe et email sont renvoyées, car ce sont des données qui pourraient permettre d'usurper l'identité d'un utilisateur
   res.status(200).json(users);
 };
@@ -16,10 +16,10 @@ module.exports.userInfo = (req, res) => {
     return res.status(400).send("ID unknown : " + req.params.id);
 
   UserModel.findById(req.params.id, (err, docs) => {
-    //Si l'id de la requête est valide je récupère les données de l'utilisateur concerné, sauf le mot de passe et l'email, pour des raisons de sécurité.
+    //Si l'id de la requête est valide je récupère les données de l'utilisateur concerné, sauf le mot de passe pour des raisons de sécurité.
     if (!err) res.send(docs);
     else console.log("ID unknown : " + err);
-  }).select("-password, -email");
+  }).select("-password");
 };
 
 //Updater le profil d'un utilisateur
