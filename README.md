@@ -2,7 +2,8 @@ Bienvenue! Si vous lisez ceci c'est que vous êtes sur le point de clôner mon a
 
 
 <!> Avant de commencer, assurez-vous d'avoir nodejs et npm installés sur votre système.
-<!> Assurez-vous également d'avoir vos ports localhost:3000 et localhost:5000 non utilisés, sinon, modifiez les ports selon vos possibilités,
+Assurez-vous d'avoir complété les fichiers .env avec les informations fournies.
+Assurez-vous également d'avoir vos ports localhost:3000 et localhost:5000 non utilisés, sinon, modifiez les ports selon vos possibilités,
 dans les fichiers .env présents dans groupomania_front/.env et Groupomania_back/config/.env
 
 1- Télécharger les fichiers.
