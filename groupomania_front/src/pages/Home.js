@@ -2,17 +2,17 @@ import React, { useContext } from "react";
 import { UidContext } from "../components/AppContext";
 import NewPostForm from "../components/Post/NewPostForm";
 import Thread from "../components/Thread";
-import Log from "../components/Log"
+import Log from "../components/Log";
 import LeftNav from "../components/LeftNav";
 
 const Home = () => {
-  const uid = useContext(UidContext)
+  const uid = useContext(UidContext);
   return (
-    <div className="home">
-      <LeftNav/>
+    <div className="home" role="main" aria-label="home-page">
+      <LeftNav />
       <div className="main">
         <div className="home-header">
-      {uid ? <NewPostForm /> : <Log signin ={true} signup={false} />}
+          {uid ? <NewPostForm /> : <Log signin={true} signup={false} />}
         </div>
         <Thread />
       </div>

@@ -6,21 +6,10 @@ nav {
   box-shadow: 18px 1px 0px $color-1, 22px 4px 0px 0px $shadow;
   z-index: 10;
   top: 0;
+  background: $white;
 
   @media screen and(max-width: 1251px) {
     padding: 0 20px;
-  }
-
-  &::after {
-    content: "";
-    height: 45px;
-    width: 110%;
-    left: -20px;
-    top:0;
-    position: absolute;
-    backdrop-filter: blur(3px);
-    background: rgba(255, 255, 255, 0.86);
-    z-index: -8;
   }
 
   .nav-container {
@@ -31,23 +20,36 @@ nav {
     justify-content: space-between;
     height: 45px;
     align-items: center;
-    
-    .logo {
+    background-color: $white;
+
+    .nav-logo {
       display: flex;
-      align-items: center;
-      position: relative;
-      width: 186px;
-      height: 26px;
-      overflow: hidden;
-      
-      img {
-        position:absolute;
-        top: -80px;
-        left: 0px;
-        max-width: 186px;
+      width: 200px;
+      height: 43px;
+      flex-direction: row;
+      .logo {
+        position: relative;
+        width: 39px;
+        height: 39px;
+        margin: 2px 2px 2px 2px;
+        overflow: hidden;
+
+        img {
+          position: absolute;
+          top: -74px;
+          left: -17px;
+          max-width: 186px;
+        }
+      }
+
+      h1 {
+        color: $color-3;
+        font-family: $font-3;
+        height: 23px;
+        margin: 10px auto 10px 2px;
       }
     }
-    
+
     ul {
       display: flex;
       align-items: center;
@@ -55,21 +57,28 @@ nav {
       width: 35%;
       justify-content: space-between;
       font-size: 1.2rem;
-      
+
       .welcome {
         transform: translateY(2px);
 
         @media screen and(max-width: 590px) {
           display: none;
         }
-        
-        h5 {
+
+        h2 {
           font-family: $font-3;
+          color: $black;
+          display: block;
+          font-size: 0.83em;
+          margin-block-start: 1.67em;
+          margin-block-end: 1.67em;
+          margin-inline-start: 0px;
+          margin-inline-end: 0px;
+          font-weight: bold;
         }
       }
-      
+
       li {
-        
         img {
           height: 24px;
           width: 24px;
