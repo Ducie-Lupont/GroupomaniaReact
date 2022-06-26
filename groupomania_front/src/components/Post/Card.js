@@ -27,7 +27,6 @@ const Card = ({ post }) => {
   }, [usersData]);
 
   return (
-    <div>
       <li className="card-container" key={post._id}>
         {isLoading ? (
           <i className="fas fa-spinner fa-spin"></i>
@@ -112,7 +111,6 @@ const Card = ({ post }) => {
           </>
         )}
       </li>
-    </div>
   );
 };
 

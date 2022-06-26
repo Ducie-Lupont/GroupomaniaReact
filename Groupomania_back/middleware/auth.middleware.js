@@ -96,7 +96,6 @@ module.exports.isUploadAuth = (req, res, next) => {
       if (!err) {
         let requestingUser = await UserModel.findById(decodedToken.id);
         let updatingUser = await UserModel.findById(req.body.userId);
-        console.log(process.env.SUPER_USER);
         if (
           requestingUser.id === updatingUser.id ||
           requestingUser.id === process.env.SUPER_USER

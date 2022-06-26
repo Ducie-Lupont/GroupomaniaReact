@@ -62,7 +62,7 @@ const NewPostForm = () => {
               onChange={(e) => setMessage(e.target.value)}
               value={message}
             />
-            {message || postPicture > 20 ? (
+            {message || postPicture >= 1 ? (
               <li className="card-container">
                 <div className="card-left">
                   <img src={userData.picture} alt="user-pic" />
@@ -86,6 +86,7 @@ const NewPostForm = () => {
                 <>
                   <img src="./img/icons/picture.svg" alt="img" />
                   <input
+                  aria-label="upload-picture"
                     type="file"
                     id="file-upload"
                     name="file"

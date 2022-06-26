@@ -8,7 +8,7 @@
 
   @media screen and(max-width: 990px) {
     grid-template-columns: 60px 1fr;
-    margin: 58px 20px 50px
+    margin: 58px 20px 50px;
   }
 
   @media screen and(max-width: 590px) {
@@ -20,9 +20,9 @@
     .home-header {
       margin: 0 auto 12px;
       text-align: center;
-      
+
       .connection-form {
-        background: $color-4;
+        background: $color-2;
         border-radius: 20px;
         padding: 20px;
 
@@ -35,19 +35,15 @@
             cursor: pointer;
             border-radius: 20px;
             padding: 12px 14px;
-            transition: .2s;
+            transition: 0.2s;
             margin: 0 8px;
           }
           .active-btn {
-            background: $color-1;
-  
-            &:hover {
-              background: $color-2;
-            }
+            background: $white;
           }
           li:not(.active-btn) {
             &:hover {
-              transform: translateX(3px)
+              transform: translateX(3px);
             }
           }
         }
@@ -58,16 +54,27 @@
             font-size: 1.2rem;
             font-family: $font-2;
             border-radius: 20px;
-  
+
             &:focus {
               box-shadow: 0 0 3px rgba(51, 51, 51, 0.2);
             }
           }
-          input[type=submit] {
+          label[for="terms"] {
+            a,
+            a:visited {
+              color: $color-link;
+              text-decoration: underline;
+            }
+          }
+          input[type="submit"] {
             padding: 14px 14px;
             border-radius: 20px;
           }
         }
+      }
+
+      .succes {
+        color: $color-succes;
       }
     }
   }
@@ -79,10 +86,9 @@
     @media screen and(max-width: 990px) {
       display: none;
     }
-  
+
     .right-side-container {
       position: fixed;
-    
     }
   }
 }
