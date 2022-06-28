@@ -2,22 +2,24 @@ Bienvenue! Voici mon application Groupomania, correspondant à mon projet 7 de f
 
 
     <!> Avant de commencer, assurez-vous d'avoir nodejs et npm installés sur votre système.
-    Assurez-vous d'avoir complété les fichiers .env avec les informations fournies.
-    Assurez-vous également d'avoir vos ports localhost:3000 et localhost:5000 non utilisés, sinon, modifiez les ports selon vos possibilités,
-    dans les fichiers .env présents dans groupomania_front/.env et Groupomania_back/config/.env
+    <!>Assurez-vous d'avoir complété les fichiers .env avec les informations fournies.
+    <!>Assurez-vous également d'avoir vos ports localhost:3000 et localhost:5000 non utilisés,
+        sinon, modifiez les ports selon vos possibilités, dans les fichiers .env présents dans 
+        groupomania_front/.env et Groupomania_back/config/.env
+    
 .
 
     1- Télécharger les fichiers.
 
-    Au dessus des fichiers présents sur le repository Git, vous pouvez télécharger ou cloner le dossier, je vous recommande de télécharger
-    le fichier ZIP tout simplement, et d'extraire son contenu à l'emplacement souhaité sur votre ordinateur, sur le bureau par exemple.
+    Au dessus des fichiers présents sur le repository Git, vous pouvez télécharger ou cloner le dossier, je vous recommande
+    de télécharger le fichier ZIP tout simplement, et d'extraire son contenu à l'emplacement souhaité sur votre ordinateur,
+    sur le bureau par exemple.
 .
 
     2- Installer l'application Backend.
 
-    Pour installer l'application backend, ouvrez un terminal (Git Bash, par exemple) et rendez-vous à l'aide du terminal dans le dossier
-    
-    (l'emplacementChoisi)/GroupomaniaReact-main/Groupomania_back
+    Pour installer l'application backend, ouvrez un terminal (Git Bash, par exemple) et rendez-vous à l'aide du terminal
+    dans le dossier: (l'emplacementChoisi)/GroupomaniaReact-main/Groupomania_back
     
     Executez la commande:
     
