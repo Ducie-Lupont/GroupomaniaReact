@@ -19,7 +19,7 @@ Bienvenue! Voici mon application Groupomania, correspondant à mon projet 7 de f
     2- Installer l'application Backend.
 
     Pour installer l'application backend, ouvrez un terminal (Git Bash, par exemple) et rendez-vous à l'aide du terminal
-    dans le dossier: (l'emplacementChoisi)/GroupomaniaReact-main/Groupomania_back
+    dans le dossier: (l'emplacementChoisi)/GroupomaniaReact/Groupomania_back
     
     Executez la commande:
     
