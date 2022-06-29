@@ -13,7 +13,7 @@ const Navbar = () => {
       <div className="nav-container">
           <NavLink to="/" className="nav-logo">
             <div className="logo">
-              <img src="./img/icon.png" alt="icon" />
+              <img src="./img/icon.png" alt="logo groupomania" />
             </div>
             <h1>Groupomania</h1>
           </NavLink>
@@ -32,7 +32,7 @@ const Navbar = () => {
             <li></li>
             <li>
               <NavLink to="/profil">
-                <img src="./img/icons/login.svg" alt="login" />
+                <img src="./img/icons/login.svg" alt="logo vers page de connexion" />
               </NavLink>
             </li>
           </ul>

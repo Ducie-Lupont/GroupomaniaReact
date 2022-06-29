@@ -1,6 +1,5 @@
 const UserModel = require("../models/user.model");
 const ObjectID = require("mongoose").Types.ObjectId;
-const fs = require("fs");
 
 //Obtenir les données de tous les utilisateurs
 module.exports.getAllUsers = async (req, res) => {
@@ -13,19 +12,19 @@ module.exports.getAllUsers = async (req, res) => {
 module.exports.userInfo = (req, res) => {
   if (!ObjectID.isValid(req.params.id))
     //Si l'id de la requête n'est pas valide, je m'arrête là, et je réponds avec une erreur
-    return res.status(400).send("ID unknown : " + req.params.id);
+    return res.status(400).send("ID inconnu : " + req.params.id);
 
   UserModel.findById(req.params.id, (err, docs) => {
     //Si l'id de la requête est valide je récupère les données de l'utilisateur concerné, sauf le mot de passe pour des raisons de sécurité.
     if (!err) res.send(docs);
-    else console.log("ID unknown : " + err);
+    else console.log("ID inconnu : " + err);
   }).select("-password");
 };
 
 //Updater le profil d'un utilisateur
 module.exports.updateUser = async (req, res) => {
   if (!ObjectID.isValid(req.params.id))
-    return res.status(400).send("ID unknown : " + req.params.id);
+    return res.status(400).send("ID inconnu : " + req.params.id);
 
   try {
     await UserModel.findOneAndUpdate(
@@ -35,7 +34,7 @@ module.exports.updateUser = async (req, res) => {
           bio: req.body.bio,
         },
       },
-      { new: true, upsert: true, setDefaultsOnInsert: true },
+      { upsert: true, setDefaultsOnInsert: true },
       (err, docs) => {
         if (!err) return res.send(docs);
         if (err) return res.status(500).send({ message: err });
@@ -49,7 +48,7 @@ module.exports.updateUser = async (req, res) => {
 //Supprimer un utilisateur //Cette fonction n'est pas proposée dans le front, mais elle pourrait être ajoutée en appelant la route concernée.
 /*module.exports.deleteUser = async (req, res) => {
     if (!ObjectID.isValid(req.params.id))
-        return res.status(400).send('ID unknown : ' + req.params.id)
+        return res.status(400).send('ID inconnu : ' + req.params.id)
 
     try {
         const docs = await UserModel.findById(req.params.id)

@@ -8,7 +8,7 @@ import LeftNav from "../components/LeftNav";
 const Home = () => {
   const uid = useContext(UidContext);
   return (
-    <div className="home" role="main" aria-label="home-page">
+    <div className="home" role="main" aria-label="Page d'accueil">
       <LeftNav />
       <div className="main">
         <div className="home-header">

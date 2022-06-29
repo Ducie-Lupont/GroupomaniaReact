@@ -51,7 +51,7 @@ const NewPostForm = () => {
         <>
           <NavLink to="/profil">
             <div className="user-info">
-              <img src={userData.picture} alt="user-img" />
+              <img src={userData.picture} alt="utilisateur connecté" />
             </div>
           </NavLink>
           <div className="post-form">
@@ -62,10 +62,10 @@ const NewPostForm = () => {
               onChange={(e) => setMessage(e.target.value)}
               value={message}
             />
-            {message || postPicture >= 1 ? (
+            {message || postPicture ? (
               <li className="card-container">
                 <div className="card-left">
-                  <img src={userData.picture} alt="user-pic" />
+                  <img src={userData.picture} alt="utilisateur connecté" />
                 </div>
                 <div className="card-right">
                   <div className="card-hearder">
@@ -76,7 +76,7 @@ const NewPostForm = () => {
                   </div>
                   <div className="content">
                     <p>{message}</p>
-                    <img src={postPicture} alt="" />
+                    <img src={postPicture} alt="publication d'un utilisateur" />
                   </div>
                 </div>
               </li>
@@ -84,7 +84,7 @@ const NewPostForm = () => {
             <div className="footer-form">
               <div className="icon">
                 <>
-                  <img src="./img/icons/picture.svg" alt="img" />
+                  <img src="./img/icons/picture.svg" alt="icone d'upload de fichier" />
                   <input
                   aria-label="upload-picture"
                     type="file"

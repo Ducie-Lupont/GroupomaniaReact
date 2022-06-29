@@ -28,7 +28,7 @@ module.exports.requireAuth = (req, res, next) => {
   if (token) {
     jwt.verify(token, process.env.TOKEN_SECRET, async (err, decodedToken) => {
       if (err) {
-        res.send(200).json("no token");
+        res.send(200).json("Pas de token");
       } else {
         next();
       }
@@ -43,13 +43,13 @@ module.exports.requireAuth = (req, res, next) => {
 module.exports.isPostAuth = (req, res, next) => {
   const token = req.cookies.jwt;
   if (!token) {
-    return console.log("No Token");
+    return console.log("Pas de token");
   } else {
     jwt.verify(token, process.env.TOKEN_SECRET, async (err, decodedToken) => {
       if (!err) {
         let user = await UserModel.findById(decodedToken.id);
         let poster = await postModel.findById(req.params.id);
-        if (poster.posterId === user.id || user.id === process.env.SUPER_USER) {
+        if (poster.posterId === user.id || user.isAdmin === true) {
           res.locals.user = user;
           next();
         } else {
@@ -65,7 +65,7 @@ module.exports.isPostAuth = (req, res, next) => {
 module.exports.isUserAuth = (req, res, next) => {
   const token = req.cookies.jwt;
   if (!token) {
-    return console.log("No Token");
+    return console.log("Pas de token");
   } else {
     jwt.verify(token, process.env.TOKEN_SECRET, async (err, decodedToken) => {
       if (!err) {
@@ -73,7 +73,7 @@ module.exports.isUserAuth = (req, res, next) => {
         let updatingUser = await UserModel.findById(req.params.id);
         if (
           requestingUser.id === updatingUser.id ||
-          requestingUser.id === process.env.SUPER_USER
+          requestingUser.isAdmin === true
         ) {
           res.locals.user = updatingUser;
           next();
@@ -90,7 +90,7 @@ module.exports.isUserAuth = (req, res, next) => {
 module.exports.isUploadAuth = (req, res, next) => {
   const token = req.cookies.jwt;
   if (!token) {
-    return console.log("No Token");
+    return console.log("Pas de token");
   } else {
     jwt.verify(token, process.env.TOKEN_SECRET, async (err, decodedToken) => {
       if (!err) {
@@ -98,7 +98,7 @@ module.exports.isUploadAuth = (req, res, next) => {
         let updatingUser = await UserModel.findById(req.body.userId);
         if (
           requestingUser.id === updatingUser.id ||
-          requestingUser.id === process.env.SUPER_USER
+          requestingUser.isAdmin === true
         ) {
           res.locals.user = updatingUser;
           next();

@@ -24,7 +24,7 @@ const userSchema = new mongoose.Schema(
     password: {
       type: String,
       required: true,
-      max: 1024,
+      max: 44,
       minlength: 4,
     },
     picture: {
@@ -34,25 +34,27 @@ const userSchema = new mongoose.Schema(
     bio: {
       type: String,
       max: 1024,
-      default: "Présentez-vous!",
     },
     likes: {
       type: [String],
     },
+    isAdmin: {
+      type: Boolean,
+    }
   },
   {
     timestamps: true,
   }
 );
 
-// fonction pour "saler"(crypter) les mots de passe.
+// fonction pour saler les mots de passe.
 userSchema.pre("save", async function (next) {
   const salt = await bcrypt.genSalt();
   this.password = await bcrypt.hash(this.password, salt);
   next();
 });
 
-//fonction pour décrypter un mod de passe
+//fonction pour dessaler un mot de passe
 userSchema.statics.login = async function (email, password) {
   const user = await this.findOne({ email });
   if (user) {
@@ -60,9 +62,9 @@ userSchema.statics.login = async function (email, password) {
     if (auth) {
       return user;
     }
-    throw Error("incorrect password");
+    throw Error("Mauvais mot de passe");
   }
-  throw Error("incorrect email");
+  throw Error("E-mail incorrect");
 };
 
 const UserModel = mongoose.model("user", userSchema);

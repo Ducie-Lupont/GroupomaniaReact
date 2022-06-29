@@ -8,9 +8,9 @@ module.exports.uploadProfil = async (req, res) => {
             req.file.mimetype !== 'image/png' &&
             req.file.mimetype !== 'image/jpeg'
         )
-            throw Error('invalid file')
+            throw Error('Type de fichier invalide')
 
-        if (req.file.size > 500000) throw Error('max size')    //verif du poids du fichier
+        if (req.file.size > 500000) throw Error('Fichier trop volumineux')    //verif du poids du fichier
     } catch (err) {
         const errors = uploadErrors(err)
         return res.status(201).json({ errors })

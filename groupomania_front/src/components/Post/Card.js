@@ -43,7 +43,7 @@ const Card = ({ post }) => {
                     })
                     .join("")
                 }
-                alt="poster-pic"
+                alt="profil de l'auteur du post"
               />
             </div>
             <div className="card-right">
@@ -77,34 +77,23 @@ const Card = ({ post }) => {
                 </div>
               )}
               {post.picture && (
-                <img src={post.picture} alt="card-pic" className="card-pic" />
+                <img src={post.picture} alt="contenu du post" className="card-pic" />
               )}
-              {post.video && (
-                <iframe
-                  width="500"
-                  height="300"
-                  src={post.video}
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  title={post._id}
-                ></iframe>
-              )}
-              {(userData._id === post.posterId || userData.unicorn === true) && (
+              {(userData._id === post.posterId || userData.isAdmin === true) && (
                 <div className="button-container">
                   <div onClick={() => setIsUpdated(!isUpdated)}>
-                    <img src="./img/icons/edit.svg" alt="edit" />
+                    <img src="./img/icons/edit.svg" alt="modifier le post" />
                   </div>
                   <DeleteCard id={post._id} />
                 </div>
               )}
               <div className="card-footer">
                 <div className="comment-icon">
-                  <img onClick={() => setShowComments(!showComments)} src="./img/icons/message1.svg" alt="comment" />
+                  <img onClick={() => setShowComments(!showComments)} src="./img/icons/message1.svg" alt="afficher les commentaires" />
                   <span>{post.comments.length}</span>
                 </div>
                 <LikeButton post={post} />
-                <img src="./img/icons/share.svg" alt="share" />
+                <img src="./img/icons/share.svg" alt="bouton de partage" />
               </div>
               {showComments && <CardComments post={post} />}
             </div>
